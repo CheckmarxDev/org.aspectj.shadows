@@ -1,7 +1,7 @@
 <project name="ShadowJdtCore" basedir="." default="make.jdtcore.jar">
 
 	<property name="eclipse.home" value="/Users/aclement/eclipses/e46_maintenance/Eclipse.app"/>
-    <property name="plugins.dir" value="${eclipse.home}/Contents/Eclipse/plugins"/>
+    <property name="plugins.dir" value="D:/work/upwork projects/checkmarx/aspectJ/eclipse_jars2"/>
     <property name="plugins.src.dir" value="${plugins.dir}/org.eclipse.platform.source_${eclipse.version}/src"/>
     <property name="aspectjtools.jar" value=""/>
 
@@ -13,14 +13,14 @@
         	<!-- updated for E46 maintenance M20161026 -->
         	<zipfileset src="${plugins.dir}/org.eclipse.equinox.registry_3.6.100.v20160223-2218.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.equinox.common_3.8.0.v20160509-1230.jar"/>
-        	<zipfileset src="${plugins.dir}/org.eclipse.osgi_3.11.2.v20161025-1717.jar"/>
+        	<zipfileset src="${plugins.dir}/org.eclipse.osgi_3.11.2.v20161107-1947.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.core.jobs_3.8.0.v20160509-0411.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.core.resources_3.11.0.v20160503-1608.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.core.runtime_3.12.0.v20160606-1342.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.equinox.preferences_3.6.1.v20160815-1406.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.equinox.app_1.3.400.v20150715-1528.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.text_3.6.0.v20160503-1849.jar"/>
-        	<zipfileset src="${plugins.dir}/org.eclipse.core.filesystem_1.6.0.v20161017-1730.jar"/>
+        	<zipfileset src="${plugins.dir}/org.eclipse.core.filesystem_1.6.0.v20160503-1608.jar"/>
         	<zipfileset src="${plugins.dir}/org.eclipse.core.contenttype_3.5.100.v20160418-1621.jar"/>
         	<!--
         	<zipfileset src="${plugins.dir}/org.eclipse.core.runtime.compatibility.registry_3.5.200.v20130514-1256/runtime_registry_compatibility.jar"/>
@@ -135,19 +135,19 @@
     	<!-- if the files don't match org.eclipse they won't be looked copied -->
 		<copy toDir="src-temp">
 		   <fileset dir="${srcfolder}"/>
-			<mapper type="regexp" from="^(.*)org/eclipse/jdt(.*)$" to="\1org/aspectj/org/eclipse/jdt\2"/>
-			<!-- win
-		   <mapper type="regexp" from="^(.*)org\\eclipse\\jdt(.*)$" to="\1org\\aspectj\\org\\eclipse\\jdt\2"/>
-		   	-->
+			<!--<mapper type="regexp" from="^(.*)org/eclipse/jdt(.*)$" to="\1org/aspectj/org/eclipse/jdt\2"/>-->
+			<!-- win -->
+		   <mapper type="regexp" from="^(.*)org\\eclipse\\jdt(.*)$" to="\1com\\checkmarx\\repackaged\\aspectj\\org\\eclipse\\jdt\2"/>
+
 		</copy>
 
     	<!-- Copy across other stuff as is.. -->
 		<copy toDir="src-temp">
 		   <fileset dir="${srcfolder}"/>
-			<mapper type="regexp" from="^(.*)org/aspectj/ajdt(.*)$" to="\1org/aspectj/ajdt\2"/>
-			<!-- win
-		    <mapper type="regexp" from="^(.*)org\\aspectj\\ajdt(.*)$" to="\1org\\aspectj\\ajdt\2"/>
-			-->
+			<!--<mapper type="regexp" from="^(.*)org/aspectj/ajdt(.*)$" to="\1org/aspectj/ajdt\2"/>-->
+			 <!--win-->
+		    <mapper type="regexp" from="^(.*)org\\aspectj\\ajdt(.*)$" to="\1com\\checkmarx\\repackaged\\aspectj\\ajdt\2"/>
+
 		</copy>
 
 	  	<echo message="Modifying file contents to change refs from 'org.eclipse.jdt' to 'org.aspectj.org.eclipse.jdt'"/>
@@ -159,7 +159,7 @@
     	     package statements.  -->
 	  	<replaceregexp byline="true" flags="g">
 	  		<regexp pattern="org.eclipse.jdt"/>
-			<substitution expression="org.aspectj.org.eclipse.jdt"/>
+			<substitution expression="com.checkmarx.repackaged.aspectj.org.eclipse.jdt"/>
 			<fileset dir="src-temp">
 	  			<include name="**/*"/>
 				<exclude name="**/AssistOptions.java"/>
@@ -169,12 +169,21 @@
 
     	<replaceregexp byline="true" flags="g">
     		  		<regexp pattern=" org.eclipse.jdt"/>
-    				<substitution expression=" org.aspectj.org.eclipse.jdt"/>
+    				<substitution expression=" com.checkmarx.repackaged.aspectj.org.eclipse.jdt"/>
     				<fileset dir="src-temp">
     		  			<include name="**/AssistOptions.java"/>
     					<include name="**/CompilerOptions.java"/>
     		  		</fileset>
     	</replaceregexp>
+
+
+		<replaceregexp byline="true" flags="g">
+			<regexp pattern="org.aspectj.ajdt"/>
+			<substitution expression="com.checkmarx.repackaged.aspectj.ajdt"/>
+			<fileset dir="src-temp">
+				<include name="**/*"/>
+			</fileset>
+		</replaceregexp>
 
     	<delete dir="${srcfolder}"/>
 
