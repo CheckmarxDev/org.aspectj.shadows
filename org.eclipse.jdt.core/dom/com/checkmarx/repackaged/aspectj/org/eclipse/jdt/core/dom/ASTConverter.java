@@ -73,7 +73,7 @@ public class ASTConverter {
 	
 	// AspectJ Extension start
 	// We use a factory to build the AST converter, so we can provide the right one from the ajdt.core module
-	private static final String AJ_ASTCONVERTER_FACTORY = "org.aspectj.ajdt.core.dom.AjASTConverterFactory"; //$NON-NLS-1$
+	private static final String AJ_ASTCONVERTER_FACTORY = "com.checkmarx.repackaged.aspectj.ajdt.core.dom.AjASTConverterFactory"; //$NON-NLS-1$
 	private static IASTConverterFactory astConverterFactory;
 	
 	static {

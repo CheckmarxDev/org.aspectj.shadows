@@ -76,7 +76,7 @@ protected List<String> annotationPaths;
 
 // AspectJ Extension	
 static {
-	String openarchivesString = getSystemPropertyWithoutSecurityException("org.aspectj.weaver.openarchives",Integer.toString(MAXOPEN_DEFAULT));
+	String openarchivesString = getSystemPropertyWithoutSecurityException("com.checkmarx.repackaged.aspectj.weaver.openarchives",Integer.toString(MAXOPEN_DEFAULT));
 	maxOpenArchives=Integer.parseInt(openarchivesString);
 	if (maxOpenArchives<20) maxOpenArchives=1000;
 }

@@ -96,7 +96,7 @@ public class ASTParser {
 
     // AspectJ Extension start 
 	// We use a factory to build the AST, so we can plugin in alternatives...
-	private static final String AJ_AST_FACTORY = "org.aspectj.ajdt.core.dom.AjASTFactory"; //$NON-NLS-1$
+	private static final String AJ_AST_FACTORY = "com.checkmarx.repackaged.aspectj.ajdt.core.dom.AjASTFactory"; //$NON-NLS-1$
 	private static IASTFactory astFactory;
 	
 	

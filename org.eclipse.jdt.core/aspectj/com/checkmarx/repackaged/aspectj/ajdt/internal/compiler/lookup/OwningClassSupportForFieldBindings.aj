@@ -52,7 +52,7 @@ public aspect OwningClassSupportForFieldBindings {
    pointcut redirectedDeclaringClassAccesses(FieldBinding aBinding) :
 	   accessingDeclaringTypeOfAFieldBinding(aBinding) && 
 	   !within(OwningClassSupportForFieldBindings) &&
-	   !withincode(* FieldBinding.canBeSeenBy(..)) && // must be based on aspect type here
+	   !withincode(* FieldBinding.canBeSeenBy(..)) &&
 	   !withincode(FieldBinding.new(..));             // allow binding to initialise properly
    
    Object around(FieldBinding aBinding) : redirectedDeclaringClassAccesses(aBinding) { 

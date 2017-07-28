@@ -40,7 +40,7 @@ import com.checkmarx.repackaged.aspectj.org.eclipse.jdt.internal.compiler.proble
 // AspectJ Extension - this whole class is an AspectJ extension to the parser
 public class Parser extends TheOriginalJDTParserClass {
 	
-	private static final String ASPECTJ_DECLARATION_FACTORY = "org.aspectj.ajdt.internal.compiler.parser.DeclarationFactory";
+	private static final String ASPECTJ_DECLARATION_FACTORY = "com.checkmarx.repackaged.aspectj.ajdt.internal.compiler.parser.DeclarationFactory";
 	private static IDeclarationFactory declarationFactory;
 	
 	static {

@@ -54,7 +54,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 	// AspectJ Extension start
 	// We use a factory to build the type declaration, so we can return the subtype AjTypeDeclaration found in the
 	// org.aspectj.ajdt.core module.
-	private static final String AJ_TYPE_DECLARATION_FACTORY = "org.aspectj.ajdt.core.dom.AjTypeDeclFactory"; //$NON-NLS-1$
+	private static final String AJ_TYPE_DECLARATION_FACTORY = "com.checkmarx.repackaged.aspectj.ajdt.core.dom.AjTypeDeclFactory"; //$NON-NLS-1$
 	private static ITypeDeclFactory declarationFactory;
 	
 	static {
