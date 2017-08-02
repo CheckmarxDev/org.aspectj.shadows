@@ -42,11 +42,24 @@
         -->
     </target>
 
+	<target name="copy.properties">
+		<copy todir="bin">
+			<fileset dir="${srcdir}" includes="**/*.properties"/>
+		</copy>
+	</target>
 
-    <target name="make.jdtcore.jar">
+
+	<target name="make.jdtcore.jar">
     	<property name="aj" value="/Users/aclement/gits/org.aspectj/org.eclipse.jdt.core"/>
     	<delete file="${aj}/jdtcore-for-aspectj.jar"/>
-        <jar destfile="${aj}/jdtcore-for-aspectj.jar">
+		<antcall target="copy.properties"><param name="srcdir" value="antadapter"/></antcall>
+		<antcall target="copy.properties"><param name="srcdir" value="compiler"/></antcall>
+		<antcall target="copy.properties"><param name="srcdir" value="formatter"/></antcall>
+		<antcall target="copy.properties"><param name="srcdir" value="batch"/></antcall>
+		<antcall target="copy.properties"><param name="srcdir" value="search"/></antcall>
+		<antcall target="copy.properties"><param name="srcdir" value="model"/></antcall>
+
+		<jar destfile="${aj}/jdtcore-for-aspectj.jar">
             <fileset dir="bin"/>
         </jar>
         <jar destfile="${aj}/jdtcore-for-aspectj.jar" update="true">
