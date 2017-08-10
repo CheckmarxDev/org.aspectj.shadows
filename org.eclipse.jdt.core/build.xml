@@ -44,7 +44,7 @@
 
 	<target name="copy.properties">
 		<copy todir="bin">
-			<fileset dir="${srcdir}" includes="**/*.properties"/>
+			<fileset dir="${srcdir}" excludes="**/*.java"/>
 		</copy>
 	</target>
 
